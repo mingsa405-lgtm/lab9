@@ -3,9 +3,13 @@
 using namespace std;
 
 int main(){	
+	double PrevBalance,Interest,  Payment,i=1, NewBalance,total;
 	cout << "Enter initial loan: ";
+	cin >> PrevBalance;
 	cout << "Enter interest rate per year (%): ";
+	cin >> Interest;
 	cout << "Enter amount you can pay per year: ";
+	cin >> Payment;
 
 	//use 'setw' to set width of table and 'left' to set left-alignment
 	//you can change input argument of 'setw()' to see the effect
@@ -21,13 +25,28 @@ int main(){
 	//use 'fixed' and 'setprecision' to fix the number of decimal digits for displaying
 	//you can change input argument of 'setprecision()' to see the effect
 	cout << fixed << setprecision(2); 
-	cout << setw(13) << left << 1; 
-	cout << setw(13) << left << 1000.0;
-	cout << setw(13) << left << 50.0;
-	cout << setw(13) << left << 1050.0;
-	cout << setw(13) << left << 100.0;
-	cout << setw(13) << left << 950.0;
-	cout << "\n";	
+	
+	
+    while(true){
+    cout<< setw(13) << left << i ;
+	cout << setw(13) << left << PrevBalance ; 
+	cout << setw(13) << left << PrevBalance*Interest/100;
+	total= PrevBalance + (PrevBalance*Interest/100);
+	cout << setw(13) << left << total;
+	if(total<Payment){
+		Payment=total;
+	}
+	cout << setw(13) << left << Payment;
+
+
+	NewBalance = PrevBalance + (PrevBalance*Interest/100) - Payment;
+	cout << setw(13) << left << NewBalance;
+	if (NewBalance <= 0){
+		break;
+	}
+	PrevBalance = NewBalance;
+	i++;
+	cout << "\n";	}
 	
 	return 0;
 }
